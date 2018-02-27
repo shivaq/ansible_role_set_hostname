@@ -1,0 +1,16 @@
+---
+- name: Set up /etc/sysconfig/network
+  replace:
+    path: /etc/sysconfig/network
+    regexp: 'HOSTNAME=\w+(\.)?\w+'
+    replace: 'HOSTNAME={{ inventory_hostname_short }}'
+  when: ansible_distribution == "Amazon" or
+        ansible_distribution == "RedHat"
+
+- name: Reboot the host
+  include_role:
+    name: common
+    tasks_from: reboot
+  when: ansible_distribution == "Amazon" or
+        ansible_distribution == "RedHat"
+

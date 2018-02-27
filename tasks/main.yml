@@ -1,0 +1,6 @@
+---
+# tasks file for set_hostname
+
+- import_tasks: hostname.yml
+- import_tasks: hosts.yml
+- import_tasks: sysconfig_network.yml
